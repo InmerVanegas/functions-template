@@ -39,10 +39,12 @@ import {
   EmptySearchResult,
   HorizontalStack,
   AutoSelection,
+  ChoiceList,
 } from "@shopify/polaris";
 
 import shopify from "../shopify.server";
 import { NotFoundPage } from "../components/NotFoundPage";
+/* import { ChoiceList } from "public/build/_shared/chunk-KWP2E7CA"; */
 
 // This is a server-side action that is invoked when the form is submitted.
 // It makes an admin GraphQL request to update a discount.
@@ -297,6 +299,9 @@ export default function VolumeEdit() {
       setSelectedTags2(discount.configuration.discountTags);
     }
   }, [isLoading, discount]);
+
+  //Para la choice list
+  const [status, setStatus] = useState([discount?.configuration?.sessionStatus.value ?? 'No Authenticated'])
 
   const { metafieldId } = discount.configuration;
   const {
@@ -686,6 +691,19 @@ export default function VolumeEdit() {
               />
               <Card>
                 <VerticalStack gap="2">
+                  <ChoiceList
+                    title="Select Session Status"
+                    choices={[
+                      { label: 'No Authenticated', value: 'No Authenticated' },
+                      { label: 'Authenticated', value: 'Authenticated' },
+                    ]}
+                    selected={status}
+                    onChange={setStatus}
+                  />
+                </VerticalStack>
+              </Card>
+              <Card>
+                <VerticalStack gap="2">
                   <Text variant="headingMd" as="h2">
                     Select the tags to discard
                   </Text>
@@ -753,13 +771,8 @@ export default function VolumeEdit() {
               <Card>
                 <VerticalStack gap="3">
                   <Text variant="headingMd" as="h2">
-                    Volume
+                    Enter discount value
                   </Text>
-                  <TextField
-                    label="Minimum quantity"
-                    autoComplete="on"
-                    {...configuration.quantity}
-                  />
                   <TextField
                     label="Discount percentage"
                     autoComplete="on"

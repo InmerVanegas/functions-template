@@ -684,10 +684,7 @@ export default function VolumeNew() {
                   <Text variant="headingMd" as="h2">
                     Enter discount value
                   </Text>
-                  <TextField
-                    label="Cantidad"
-                    {...configuration.quantity}
-                  />
+
                   <TextField
                     label="Percentage Discount"
                     {...configuration.percentage}
