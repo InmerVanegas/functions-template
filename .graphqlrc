@@ -1,0 +1,4 @@
+projects:
+    custom-product-discount:
+        schema: extensions\product-discount-js\schema.graphql
+        documents: extensions\product-discount-js\input.graphql
