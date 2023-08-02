@@ -41,7 +41,7 @@ export default /**
       return EMPTY_DISCOUNT;
     } */
 
-    console.error('No tira los tags')
+    console.error(input.cart.buyerIdentity?.isAuthenticated);
     const targets = input.cart.lines
       // Use the configured quantity instead of a hardcoded value
       .filter(line => line.quantity >= configuration.quantity &&
@@ -56,25 +56,26 @@ export default /**
         });
       });
 
-    console.error('No tira los tags 2')
-
-    if (!targets.length) {
-      console.error("No cart lines qualify for volume discount.");
-      return EMPTY_DISCOUNT;
-    }
-
-    return {
-      discounts: [
-        {
-          targets,
-          value: {
-            percentage: {
-              // Use the configured percentage instead of a hardcoded value
-              value: configuration.percentage.toString()
+    if (input.cart.buyerIdentity?.isAuthenticated) {
+      console.error('Si va a tener descuento');
+      return {
+        discounts: [
+          {
+            targets,
+            value: {
+              percentage: {
+                // Use the configured percentage instead of a hardcoded value
+                value: configuration.percentage.toString()
+              }
             }
           }
-        }
-      ],
-      discountApplicationStrategy: DiscountApplicationStrategy.First
-    };
+        ],
+        discountApplicationStrategy: DiscountApplicationStrategy.First
+      };
+    } else if (!targets.length) {
+      console.error("No cart lines qualify for volume discount.");
+      return EMPTY_DISCOUNT;
+    } else {
+      return EMPTY_DISCOUNT;
+    }
   };

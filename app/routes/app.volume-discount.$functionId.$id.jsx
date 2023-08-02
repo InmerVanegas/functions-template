@@ -661,7 +661,7 @@ export default function VolumeEdit() {
   return (
     // Render a discount form using Polaris components and the discount app components
     <Page
-      title="Create volume discount"
+      title="Edit your Discount"
       backAction={{
         content: "Discounts",
         onAction: () => onBreadcrumbAction(redirect, true),

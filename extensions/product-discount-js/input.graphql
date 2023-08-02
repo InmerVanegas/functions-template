@@ -14,6 +14,9 @@ query Input($discountTags:[String!]=[], $discardedTags:[String!]=[]) {
         }
       }
     }
+    buyerIdentity{
+      isAuthenticated
+    }
   }
   discountNode {
     metafield(namespace: "$app:volume-discount", key: "function-configuration") {

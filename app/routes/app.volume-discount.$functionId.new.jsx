@@ -567,7 +567,7 @@ export default function VolumeNew() {
   return (
     // Render a discount form using Polaris components and the discount app components
     <Page
-      title="Create volume discount"
+      title="Create custom product discount"
       backAction={{
         content: "Discounts",
         onAction: () => onBreadcrumbAction(redirect, true),
@@ -607,9 +607,13 @@ export default function VolumeNew() {
                 </VerticalStack>
               </Card>
               <Card>
-                <VerticalStack gap="2">
+                <VerticalStack gap="5">
                   <Text variant="headingMd" as="h2">
                     Select the tags to discard
+                  </Text>
+                  <Text as="p" color="subdued">
+                    The products with the tags you select in this section will not
+                    be eligible for the discount
                   </Text>
                   <Combobox
                     allowMultiple
@@ -643,6 +647,10 @@ export default function VolumeNew() {
                 <VerticalStack gap="2">
                   <Text variant="headingMd" as="h2">
                     Select the tags to include
+                  </Text>
+                  <Text as="p" color="subdued">
+                    The products with the tags you select in this section will be
+                    eligible for the discount
                   </Text>
                   <Combobox
                     allowMultiple
